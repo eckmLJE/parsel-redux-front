@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 const BottomBar = () => {
-  return <div>BottomBar</div>;
+  return <div className="bottom-bar" >BottomBar</div>;
 };
 
 export default BottomBar;

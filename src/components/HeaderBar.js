@@ -1,8 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
 
 const HeaderBar = () => {
-  return <div>HeaderBar</div>;
+  return <div className="header-bar" >HeaderBar</div>;
 };
 
 export default HeaderBar;

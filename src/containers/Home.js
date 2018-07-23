@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import AnnotationsHomeList from "../components/AnnotationsHomeList";
 import StatementsHomeList from "../components/StatementsHomeList";
