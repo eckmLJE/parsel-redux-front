@@ -5,7 +5,7 @@ import StatementsHomeList from "../components/StatementsHomeList";
 
 const Home = () => {
   return (
-    <div>
+    <div className="home-grid-container" >
       <StatementsHomeList />
       <AnnotationsHomeList />
     </div>

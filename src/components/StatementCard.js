@@ -2,7 +2,7 @@ import React from "react";
 
 const StatementCard = props => {
   return (
-      <div>{props.statement.attributes.title}</div>
+      <div className="statement-home-card" >{props.statement.attributes.title}</div>
   );
 };
 
