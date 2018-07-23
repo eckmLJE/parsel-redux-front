@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setCurrentStatement } from "../actions/statement";
+import { setCurrentStatement, fetchStatements } from "../actions/statement";
 
 const statementObj = {
   id: "1",
@@ -24,16 +24,24 @@ const StatementView = props => {
       {props.currentStatement ? (
         <div>{props.currentStatement.attributes.title}</div>
       ) : null}
+      <button onClick={props.fetchStatements}>Fetch Statements</button>
+      {props.availableStatements.length > 0
+        ? props.availableStatements.map(statement => (
+            <div key={statement.id}>{statement.attributes.title}</div>
+          ))
+        : null}
     </div>
   );
 };
 
 const mapStateToProps = state => ({
-  currentStatement: state.statements.currentStatement
+  currentStatement: state.statements.currentStatement,
+  availableStatements: state.statements.availableStatements
 });
 
 const mapDispatchToProps = dispatch => ({
-  setStatement: statementObj => dispatch(setCurrentStatement(statementObj))
+  setStatement: statementObj => dispatch(setCurrentStatement(statementObj)),
+  fetchStatements: () => dispatch(fetchStatements())
 });
 
 export default connect(
