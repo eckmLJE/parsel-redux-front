@@ -1,7 +1,9 @@
-import React from 'react';
+import React from "react";
 
-const AnnotationHomeCard = () => {
-  return <div>AnnotationHomeCard</div>;
+const AnnotationHomeCard = props => {
+  return (
+    <div>{props.annotation.attributes.content}</div>
+  );
 };
 
 export default AnnotationHomeCard;

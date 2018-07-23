@@ -1,7 +1,9 @@
-import React from 'react';
+import React from "react";
 
-const StatementCard = () => {
-    return <div>StatementCard</div>
-}
+const StatementCard = props => {
+  return (
+      <div>{props.statement.attributes.title}</div>
+  );
+};
 
-export default StatementCard
+export default StatementCard;
