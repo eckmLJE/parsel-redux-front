@@ -18,7 +18,7 @@ class StatementsHomeList extends Component {
   render() {
     return (
       <div className="home-list">
-        <div className="home-header">Statements</div>
+        <div className="home-header">Featured Statements</div>
         {this.props.statementLoadingStatus ? (
           <div>Loading Statements...</div>
         ) : null}

@@ -5,6 +5,11 @@ export const addAnnotations = annotations => ({
   annotations
 });
 
+export const setCurrentAnnotations = statementId => ({
+  type: "SET_CURRENT_ANNOTATIONS",
+  statementId
+})
+
 export const fetchAnnotations = () => {
   return dispatch => {
     dispatch({ type: "START_FETCHING_ANNOTATIONS_REQUEST" });
