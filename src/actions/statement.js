@@ -10,7 +10,7 @@ export const addStatements = statements => ({
   statements
 });
 
-export const fetchStatements = statement => {
+export const fetchStatements = () => {
   return dispatch => {
     dispatch({ type: "START_FETCHING_STATEMENTS_REQUEST" });
     return fetch(statementsUrl)

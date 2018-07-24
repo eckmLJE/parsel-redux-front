@@ -1,3 +1,15 @@
+.header-bar {
+  background-color: black;
+  height: 40px;
+  margin: auto;
+  color: white;
+  line-height: 40px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 1.6em;
+  font-weight: 550;
+}
+
 .bottom-bar {
   position: fixed;
   background-color: black;
@@ -7,49 +19,51 @@
   margin: auto;
   color: white;
   line-height: 25px;
-}
-
-.header-bar {
-  background-color: black;
-  height: 25px;
-  margin: auto;
-  color: white;
-  line-height: 25px;
-  margin-bottom: 10px;
+  text-align: center;
 }
 
 .home-grid-container {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 55% 5% 40%;
   height: 80vh;
   width: 100%;
+  max-width: 900px;
   margin: auto;
 }
 
-.statement-home-list {
-  max-width: 600px;
-  padding: 20px;
+.home-list {
+  width: 100%;
+  padding: 10px;
 }
 
-.annotation-home-list {
-  max-width: 600px;
-  padding: 20px;
+.home-header {
+  border-bottom-style: solid;
+  border-color: black;
+  border-bottom-width: 2px;
+  width: 100%;
+  padding: 5px;
+  font-size: 1.3em;
+  font-weight: 550;
+}
+
+.home-card {
+  width: 100%;
+  padding: 5px;
+  margin-top: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: left;
+  font-size: 0.8em;
+}
+
+.home-card:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.514), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
 }
 
 .statement-home-card {
-  width: 500px;
-  height: 50px;
-  padding: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  text-align: left;
-  font-size: 0.8em;
+  height: 75px;
 }
 
 .annotation-home-card {
-  width: 500px;
-  height: 20px;
-  padding: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  text-align: left;
-  font-size: 0.8em;
+  height: 40px;
 }

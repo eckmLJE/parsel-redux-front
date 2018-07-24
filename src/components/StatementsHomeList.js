@@ -9,16 +9,26 @@ class StatementsHomeList extends Component {
     this.props.fetchStatements();
   };
 
+  findPolitician = statement => {
+    return this.props.availablePoliticians.find(
+      politician => politician.id === statement.attributes["politician-id"].toString()
+    );
+  };
+
   render() {
     return (
-      <div className="statement-home-list" >
-        <h2>Statements</h2>
+      <div className="home-list">
+        <div className="home-header">Statements</div>
         {this.props.statementLoadingStatus ? (
           <div>Loading Statements...</div>
         ) : null}
         {this.props.availableStatements.length > 0
           ? this.props.availableStatements.map(statement => (
-              <StatementCard key={statement.id} statement={statement} />
+              <StatementCard
+                key={statement.id}
+                statement={statement}
+                politician={this.findPolitician(statement)}
+              />
             ))
           : null}
       </div>
@@ -28,6 +38,7 @@ class StatementsHomeList extends Component {
 
 const mapStateToProps = state => ({
   availableStatements: state.statements.availableStatements,
+  availablePoliticians: state.politicians.availablePoliticians,
   loadingStatus: state.statements.statementLoadingStatus
 });
 

@@ -11,8 +11,8 @@ class AnnotationsHomeList extends Component {
 
   render() {
     return (
-      <div className="annotation-home-list" >
-        <h2>Annotations</h2>
+      <div className="home-list" >
+        <div className="home-header">Annotations</div>
         {this.props.annotationLoadingStatus ? (
           <div>Loading Annotations...</div>
         ) : null}
