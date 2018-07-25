@@ -1,9 +1,16 @@
+import { push } from "connected-react-router";
+
 const statementsUrl = "http://localhost:3000/api/v1/statements";
 
-export const setCurrentStatement = statement => ({
-  type: "SET_STATEMENT",
-  statement
-});
+export const setCurrentStatement = statement => {
+  return dispatch => {
+    dispatch({
+      type: "SET_STATEMENT",
+      statement
+    });
+    dispatch(push("/statement"));
+  };
+};
 
 export const addStatements = statements => ({
   type: "ADD_STATEMENTS",
