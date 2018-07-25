@@ -4,9 +4,10 @@ import { connect } from "react-redux";
 
 class AnnotationsViewList extends Component {
   getCurrentAnnotations = () => {
-    return this.props.availableAnnotations.filter(
+    let currentAnnotations = this.props.availableAnnotations.filter(
       annotation => annotation.statementId === this.props.currentStatement.id
     );
+    return currentAnnotations.sort((a, b) => a.start > b.start)
   };
 
   render() {
