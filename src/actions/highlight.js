@@ -1,7 +1,9 @@
-export const setHoveredHighlight = id => {
-  type: "SET_HIGHLIGHT", id;
-};
+export const setHoverHighlight = name => ({
+  type: "SET_HIGHLIGHT",
+  name
+});
 
-export const setCurrentSelection = selection => {
-  type: "SET_SELECTION", selection;
-};
+export const setCurrentSelection = selection => ({
+  type: "SET_SELECTION",
+  selection
+});

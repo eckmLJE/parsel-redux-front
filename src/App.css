@@ -118,6 +118,14 @@ li a {
   cursor: pointer;
 }
 
+.annotation-view-card-highlight {
+  background-color: rgb(173, 102, 102);
+}
+
 .highlight {
   background-color: rgb(170, 21, 21);
+}
+
+.highlight-alt {
+  background-color: rgb(173, 102, 102);
 }

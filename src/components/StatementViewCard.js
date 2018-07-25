@@ -12,7 +12,6 @@ class StatementViewCard extends Component {
     let currentAnnotations = this.props.availableAnnotations.filter(
       annotation => annotation.statementId === this.props.currentStatement.id
     );
-    console.log(currentAnnotations);
     currentAnnotations = currentAnnotations.sort((a, b) => a.start > b.start);
     currentAnnotations.forEach(annotation => {
       if (annotation.start > lastEnd) {
@@ -51,12 +50,9 @@ class StatementViewCard extends Component {
   makeStatementArray = () => {
     const statement = this.props.currentStatement.attributes.content;
     const highlights = this.processAnnotations();
-    console.log(highlights);
     let newStatementArray = [];
     let charCounter = 0;
     highlights.forEach(highlight => {
-      // const highlightClass = this.checkHoverHighlight(highlight.name);
-      const highlightClass = "highlight";
       newStatementArray.push(
         <TextFragment
           key={newStatementArray.length}
@@ -65,21 +61,18 @@ class StatementViewCard extends Component {
       );
       newStatementArray.push(
         <HighlightSpan
-          highlightClass={highlightClass}
           content={statement.slice(highlight.start, highlight.end)}
           name={highlight.name}
           key={highlight.name}
-          // setHoverHighlight={this.setHoverHighlight}
-          // hoveredHighlight={this.state.hoveredHighlight}
         />
       );
       charCounter = highlight.end;
     });
-    statement.length >= charCounter
-      ? newStatementArray.push(
-          statement.slice(charCounter, statement.length + 1)
-        )
-      : null;
+    if (statement.length >= charCounter) {
+      newStatementArray.push(
+        statement.slice(charCounter, statement.length + 1)
+      );
+    }
     return newStatementArray;
   };
 

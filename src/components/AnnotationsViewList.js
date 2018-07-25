@@ -15,7 +15,7 @@ class AnnotationsViewList extends Component {
         <h3>Annotations</h3>
         {this.props.currentStatement
           ? this.getCurrentAnnotations().map(annotation => (
-              <AnnotationViewCard annotation={annotation} />
+              <AnnotationViewCard key={annotation.id} annotation={annotation} />
             ))
           : null}
       </div>
