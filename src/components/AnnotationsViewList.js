@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import AnnotationViewCard from "./AnnotationViewCard";
 import { connect } from "react-redux";
+import { fetchTags } from "../actions/tag";
 
 class AnnotationsViewList extends Component {
   getCurrentAnnotations = () => {
     let currentAnnotations = this.props.availableAnnotations.filter(
       annotation => annotation.statementId === this.props.currentStatement.id
     );
-    return currentAnnotations.sort((a, b) => a.start > b.start)
+    return currentAnnotations.sort((a, b) => a.start > b.start);
   };
 
   render() {
@@ -29,7 +30,11 @@ const mapStateToProps = state => ({
   currentStatement: state.statements.currentStatement
 });
 
+const mapDispatchToProps = dispatch => ({
+  fetchTags: () => dispatch(fetchTags())
+});
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(AnnotationsViewList);

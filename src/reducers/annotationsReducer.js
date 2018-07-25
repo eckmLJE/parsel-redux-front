@@ -20,11 +20,13 @@ const Annotations = (
 
 const convertAnnotation = annotation => {
   return {
-    id: convertId(annotation.id),
+    id: annotation.id,
+    name: convertId(annotation.id),
     start: annotation.attributes.start,
     end: annotation.attributes.end,
     content: annotation.attributes.content,
-    statementId: annotation.attributes["statement-id"].toString()
+    statementId: annotation.attributes["statement-id"].toString(),
+    tags: annotation.relationships.tags.data.map(tag => tag.id.toString())
   };
 };
 

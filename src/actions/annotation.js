@@ -8,7 +8,7 @@ export const addAnnotations = annotations => ({
 export const setCurrentAnnotations = statementId => ({
   type: "SET_CURRENT_ANNOTATIONS",
   statementId
-})
+});
 
 export const fetchAnnotations = () => {
   return dispatch => {
@@ -17,6 +17,7 @@ export const fetchAnnotations = () => {
       .then(res => res.json())
       .then(json =>
         dispatch({ type: "ADD_ANNOTATIONS", annotations: json.data })
-      );
+      )
+      .then(console.log);
   };
 };

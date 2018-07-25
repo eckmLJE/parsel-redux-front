@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setHoverHighlight } from "../actions/highlight";
+import tags from "../interpreter/tags";
 
 const card = "home-card annotation-view-card";
 
@@ -15,6 +16,14 @@ class AnnotationViewCard extends Component {
     return <div>{this.props.annotation.content.slice(0, 20) + "..."}</div>;
   };
 
+  mapTags = () => {
+    return this.props.annotation.tags.map(tag => (
+      <span className="annotation-tag" key={tag}>
+        {tags[tag]}{" "}
+      </span>
+    ));
+  };
+
   renderExpandCard = () => {
     return (
       <div className="annotation-view-expanded">
@@ -23,7 +32,7 @@ class AnnotationViewCard extends Component {
         <div className="annotation-view-body">
           {this.props.annotation.content}
         </div>
-        <div className="annotation-view-tags">Tags</div>
+        <div className="annotation-view-tags">{this.mapTags()}</div>
         <div
           className="annotation-view-bottom"
           onClick={() => this.setState({ comments: !this.state.comments })}
@@ -52,12 +61,12 @@ class AnnotationViewCard extends Component {
     return (
       <div
         className={
-          this.props.currentHighlight.includes(this.props.annotation.id)
+          this.props.currentHighlight.includes(this.props.annotation.name)
             ? card + " annotation-view-card-highlight"
             : card
         }
         onMouseEnter={() =>
-          this.props.setHoverHighlight(this.props.annotation.id)
+          this.props.setHoverHighlight(this.props.annotation.name)
         }
         onMouseLeave={() => this.props.setHoverHighlight("none")}
         onClick={this.handleClick}

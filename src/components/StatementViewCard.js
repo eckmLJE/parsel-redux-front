@@ -16,7 +16,7 @@ class StatementViewCard extends Component {
     currentAnnotations.forEach(annotation => {
       if (annotation.start > lastEnd) {
         highlights.push(
-          this.createHighlight(annotation.id, annotation.start, annotation.end)
+          this.createHighlight(annotation.name, annotation.start, annotation.end)
         );
         lastEnd = annotation.end;
       } else {
@@ -26,14 +26,14 @@ class StatementViewCard extends Component {
         highlights.push(lastHighlight);
         highlights.push(
           this.createHighlight(
-            `${lastHighlight.name} ${annotation.id}`,
+            `${lastHighlight.name} ${annotation.name}`,
             annotation.start,
             prevEnd
           )
         );
 
         highlights.push(
-          this.createHighlight(annotation.id, prevEnd, annotation.end)
+          this.createHighlight(annotation.name, prevEnd, annotation.end)
         );
         lastEnd = annotation.end;
       }
