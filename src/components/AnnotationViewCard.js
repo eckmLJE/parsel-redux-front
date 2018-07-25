@@ -1,7 +1,7 @@
 import React from "react";
 
 const AnnotationViewCard = props => {
-  return <div>{props.annotation.attributes.content}</div>;
+  return <div className="home-card annotation-view-card">{props.annotation.content}</div>;
 };
 
 export default AnnotationViewCard;

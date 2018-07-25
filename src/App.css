@@ -65,15 +65,16 @@
 
 .home-card:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.514), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  cursor: pointer;
 }
 
 .statement-home-card {
   height: 75px;
+  cursor: pointer;
 }
 
 .annotation-home-card {
   height: 40px;
+  cursor: pointer;
 }
 
 ul {
@@ -104,9 +105,19 @@ li a {
   width: 100%;
   padding: 5px;
   font-size: 1.1em;
+  overflow-y: scroll;
 }
 
 .statement-view-annotations {
   width: 100%;
   padding: 5px;
+}
+
+.annotation-view-card {
+  height: 20px;
+  cursor: pointer;
+}
+
+.highlight {
+  background-color: rgb(170, 21, 21);
 }
