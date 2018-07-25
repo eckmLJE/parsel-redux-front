@@ -114,7 +114,7 @@ li a {
 }
 
 .annotation-view-card {
-  height: 20px;
+  max-height: 200px;
   cursor: pointer;
 }
 
@@ -128,4 +128,42 @@ li a {
 
 .highlight-alt {
   background-color: rgb(173, 102, 102);
+}
+
+.annotation-view-expanded {
+  position: relative;
+  max-height: 200px;
+  min-height: 75px;
+  overflow-y: scroll;
+}
+
+.annotation-view-top-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.annotation-view-top-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.annotation-view-body {
+  margin-top: 1.2em;
+  margin-bottom: 1.2em;
+  line-height: 1.5em;
+}
+
+.annotation-view-bottom {
+  position: absolute;
+  left: 5;
+  bottom: 0;
+  cursor: pointer;
+}
+
+.annotation-view-tags {
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
