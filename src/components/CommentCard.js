@@ -1,19 +1,29 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Comment } from "semantic-ui-react";
+import moment from "moment";
 
 class CommentCard extends Component {
   getUserAttributes = () => {
     const user = this.props.availableUsers.find(
-      user => user.id == this.props.comment.attributes["user-id"]
+      user =>
+        user.id.toString() ===
+        this.props.comment.attributes["user-id"].toString()
     );
     return user.attributes;
   };
 
   render() {
     return (
-      <div className="home-card annotation-view-card">
-        {this.getUserAttributes().username}{" says "}{this.props.comment.attributes.content}
-      </div>
+      <Comment>
+        <Comment.Content>
+          <Comment.Author>{this.getUserAttributes().username}</Comment.Author>
+          <Comment.Metadata>
+            {moment(this.props.comment.attributes.created_at).calendar()}
+          </Comment.Metadata>
+          <Comment.Text>{this.props.comment.attributes.content}</Comment.Text>
+        </Comment.Content>
+      </Comment>
     );
   }
 }

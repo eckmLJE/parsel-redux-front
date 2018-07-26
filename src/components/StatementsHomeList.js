@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setCurrentStatement, fetchStatements } from "../actions/statement";
+import { Item } from "semantic-ui-react";
 
 import StatementCard from "./StatementCard";
 
@@ -11,14 +12,14 @@ class StatementsHomeList extends Component {
 
   findPolitician = statement => {
     return this.props.availablePoliticians.find(
-      politician => politician.id === statement.attributes["politician-id"].toString()
+      politician =>
+        politician.id === statement.attributes["politician-id"].toString()
     );
   };
 
   render() {
     return (
-      <div className="home-list">
-        <div className="home-header">Featured Statements</div>
+      <Item.Group>
         {this.props.statementLoadingStatus ? (
           <div>Loading Statements...</div>
         ) : null}
@@ -31,7 +32,7 @@ class StatementsHomeList extends Component {
               />
             ))
           : null}
-      </div>
+      </Item.Group>
     );
   }
 }

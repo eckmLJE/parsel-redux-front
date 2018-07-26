@@ -185,3 +185,7 @@ li a {
   border-color: black;
   cursor: pointer;
 }
+
+.comment-card {
+  margin-left: 15px;
+}

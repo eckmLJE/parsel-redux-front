@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Grid } from "semantic-ui-react";
+
 import { fetchPoliticians } from "../actions/politician";
 import { fetchUsers } from "../actions/user";
 import { fetchComments } from "../actions/comment";
@@ -16,10 +18,17 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="home-grid-container">
-        <StatementsHomeList />
-        <div />
-        <AnnotationsHomeList />
+      <div style={{ maxWidth: 1000, margin: "auto" }}>
+        <Grid columns={2} divided>
+          <Grid.Row>
+            <Grid.Column>
+              <StatementsHomeList />
+            </Grid.Column>
+            <Grid.Column>
+              <AnnotationsHomeList />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </div>
     );
   }

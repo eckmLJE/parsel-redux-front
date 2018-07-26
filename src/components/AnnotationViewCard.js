@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setHoverHighlight } from "../actions/highlight";
 import tags from "../interpreter/tags";
-import CommentCard from "./CommentCard"
+import CommentCard from "./CommentCard";
+import { Comment } from "semantic-ui-react";
 
 const card = "home-card annotation-view-card";
 
@@ -68,7 +69,9 @@ class AnnotationViewCard extends Component {
 
   getComments = () => {
     return this.props.availableComments.filter(
-      comment => comment.attributes["annotation-id"].toString() === this.props.annotation.id
+      comment =>
+        comment.attributes["annotation-id"].toString() ===
+        this.props.annotation.id
     );
   };
 
@@ -90,11 +93,13 @@ class AnnotationViewCard extends Component {
         >
           {this.state.expanded ? this.renderExpandCard() : this.renderMinCard()}
         </div>
-        {this.state.expanded && this.state.comments
-          ? this.getComments().map(comment => (
-            <CommentCard key={comment.id} comment={comment} />
-          ))
-          : null}
+        <Comment.Group style={{marginLeft: 10}}>
+          {this.state.expanded && this.state.comments
+            ? this.getComments().map(comment => (
+                <CommentCard key={comment.id} comment={comment} />
+              ))
+            : null}
+        </Comment.Group>
       </div>
     );
   }
