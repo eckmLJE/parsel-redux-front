@@ -115,7 +115,7 @@ li a {
 
 .annotation-view-card {
   max-height: 200px;
-  cursor: pointer;
+  cursor: default;
 }
 
 .annotation-view-card-highlight {
@@ -175,4 +175,13 @@ li a {
   border-color: black;
   margin: 5px;
   padding: 2px;
+}
+
+.handle-expand {
+  display: inline-block;
+  padding: 2px;
+  background-color: blue;
+  border-style: solid;
+  border-color: black;
+  cursor: pointer;
 }
