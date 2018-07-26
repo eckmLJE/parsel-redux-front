@@ -16,12 +16,20 @@ class CommentCard extends Component {
   render() {
     return (
       <Comment>
+        <Comment.Avatar />
         <Comment.Content>
-          <Comment.Author>{this.getUserAttributes().username}</Comment.Author>
+          <Comment.Author as="a">
+            {this.getUserAttributes().username}
+          </Comment.Author>
           <Comment.Metadata>
-            {moment(this.props.comment.attributes.created_at).calendar()}
+            <div>
+              {moment(this.props.comment.attributes.created_at).calendar()}
+            </div>
           </Comment.Metadata>
           <Comment.Text>{this.props.comment.attributes.content}</Comment.Text>
+          <Comment.Actions>
+            <Comment.Action>Reply</Comment.Action>
+          </Comment.Actions>
         </Comment.Content>
       </Comment>
     );

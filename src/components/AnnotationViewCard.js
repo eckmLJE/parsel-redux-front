@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { setHoverHighlight } from "../actions/highlight";
 import tags from "../interpreter/tags";
 import CommentCard from "./CommentCard";
-import { Comment } from "semantic-ui-react";
+import { Comment, Button, Card } from "semantic-ui-react";
 
 const card = "home-card annotation-view-card";
 
@@ -16,39 +16,44 @@ class AnnotationViewCard extends Component {
 
   renderMinCard = () => {
     return (
-      <div>
-        <div className="handle-expand" onClick={this.handleExpandClick}>
-          {" + "}
-        </div>
-        {this.props.annotation.content.slice(0, 20) + "..."}
-      </div>
+      <Card>
+        <Card.Content>
+          <Card.Description>
+            {this.props.annotation.content.slice(0, 20) + "..."}
+          </Card.Description>
+          <Button
+            size="mini"
+            basic
+            icon="angle down"
+            floated="right"
+            onClick={this.handleExpandClick}
+          />
+        </Card.Content>
+      </Card>
     );
   };
 
   renderExpandCard = () => {
     return (
-      <div className="annotation-view-expanded">
-        <div className="annotation-view-top-left">
-          <div className="handle-expand" onClick={this.handleExpandClick}>
-            {" - "}
-          </div>
-          {this.getUserAttributes().username}
-          {` (${this.getUserAttributes().points})`}
-        </div>
-        <div className="annotation-view-top-right">
-          {this.props.annotation.points}
-        </div>
-        <div className="annotation-view-body">
-          {this.props.annotation.content}
-        </div>
-        <div className="annotation-view-tags">{this.mapTags()}</div>
-        <div
-          className="annotation-view-bottom"
-          onClick={() => this.setState({ comments: !this.state.comments })}
-        >
-          Comments
-        </div>
-      </div>
+      <Card>
+        <Card.Content>
+          <Card.Header>{this.getUserAttributes().username}</Card.Header>
+          <Card.Meta>
+            {`Reputation: ${this.getUserAttributes().points}`}
+          </Card.Meta>
+          <Card.Description>{this.props.annotation.content}</Card.Description>
+        </Card.Content>
+        <Card.Content extra>
+          {"Points: "} {this.props.annotation.points}
+          <Button
+            basic
+            floated="right"
+            onClick={() => this.setState({ comments: !this.state.comments })}
+          >
+            Comments
+          </Button>
+        </Card.Content>
+      </Card>
     );
   };
 
@@ -93,7 +98,7 @@ class AnnotationViewCard extends Component {
         >
           {this.state.expanded ? this.renderExpandCard() : this.renderMinCard()}
         </div>
-        <Comment.Group style={{marginLeft: 10}}>
+        <Comment.Group>
           {this.state.expanded && this.state.comments
             ? this.getComments().map(comment => (
                 <CommentCard key={comment.id} comment={comment} />

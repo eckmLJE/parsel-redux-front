@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AnnotationViewCard from "./AnnotationViewCard";
 import { connect } from "react-redux";
 import { fetchTags } from "../actions/tag";
+import { Card } from "semantic-ui-react";
 
 class AnnotationsViewList extends Component {
   getCurrentAnnotations = () => {
@@ -13,14 +14,14 @@ class AnnotationsViewList extends Component {
 
   render() {
     return (
-      <div className="statement-view-annotations">
+      <Card.Group>
         <h3>Annotations</h3>
         {this.props.currentStatement
           ? this.getCurrentAnnotations().map(annotation => (
               <AnnotationViewCard key={annotation.id} annotation={annotation} />
             ))
           : null}
-      </div>
+      </Card.Group>
     );
   }
 }
