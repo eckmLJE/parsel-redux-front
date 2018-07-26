@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid } from "semantic-ui-react";
+import { Grid, Container } from "semantic-ui-react";
 
 import { fetchPoliticians } from "../actions/politician";
 import { fetchUsers } from "../actions/user";
@@ -18,18 +18,18 @@ class Home extends Component {
 
   render() {
     return (
-      <div style={{ maxWidth: 1000, margin: "auto" }}>
-        <Grid columns={2} divided>
+      <Container style={{ maxWidth: 700, margin: "auto", marginTop: 50 }}>
+        <Grid divided stackable>
           <Grid.Row>
-            <Grid.Column>
+            <Grid.Column width={10}>
               <StatementsHomeList />
             </Grid.Column>
-            <Grid.Column>
+            <Grid.Column width={6}>
               <AnnotationsHomeList />
             </Grid.Column>
           </Grid.Row>
         </Grid>
-      </div>
+      </Container>
     );
   }
 }

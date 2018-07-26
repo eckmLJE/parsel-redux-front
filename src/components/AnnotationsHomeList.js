@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchAnnotations } from "../actions/annotation";
+import { Item } from "semantic-ui-react";
 
 import AnnotationHomeCard from "./AnnotationHomeCard";
 
@@ -11,17 +12,16 @@ class AnnotationsHomeList extends Component {
 
   render() {
     return (
-      <div className="home-list" >
-        <div className="home-header">Top Annotations</div>
-        {this.props.annotationLoadingStatus ? (
+      <Item.Group divided>
+        {this.props.annotationLoadingStatus &&
+        !(this.props.availableAnnotations.length > 0) ? (
           <div>Loading Annotations...</div>
-        ) : null}
-        {this.props.availableAnnotations.length > 0
-          ? this.props.availableAnnotations.map(annotation => (
-              <AnnotationHomeCard key={annotation.id} annotation={annotation} />
-            ))
-          : null}
-      </div>
+        ) : (
+          this.props.availableAnnotations.map(annotation => (
+            <AnnotationHomeCard key={annotation.id} annotation={annotation} />
+          ))
+        )}
+      </Item.Group>
     );
   }
 }

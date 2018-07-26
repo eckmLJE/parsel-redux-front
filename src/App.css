@@ -30,7 +30,36 @@
   text-align: center;
 }
 
-.home-grid-container {
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: 10;
+}
+
+li {
+  float: left;
+  padding-left: 10px;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
+
+.highlight {
+  background-color: rgb(170, 21, 21);
+}
+
+.highlight-alt {
+  background-color: rgb(173, 102, 102);
+}
+
+/* .home-grid-container {
   display: grid;
   grid-template-columns: 55% 5% 40%;
   height: 80vh;
@@ -77,26 +106,7 @@
   cursor: pointer;
 }
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: 10;
-}
 
-li {
-  float: left;
-  padding-left: 10px;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-}
 
 .statement-view-content {
   border-style: solid;
@@ -119,14 +129,6 @@ li a {
 }
 
 .annotation-view-card-highlight {
-  background-color: rgb(173, 102, 102);
-}
-
-.highlight {
-  background-color: rgb(170, 21, 21);
-}
-
-.highlight-alt {
   background-color: rgb(173, 102, 102);
 }
 
@@ -188,4 +190,4 @@ li a {
 
 .comment-card {
   margin-left: 15px;
-}
+} */

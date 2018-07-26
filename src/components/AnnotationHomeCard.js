@@ -1,8 +1,13 @@
 import React from "react";
+import { Item } from "semantic-ui-react";
 
 const AnnotationHomeCard = props => {
   return (
-    <div className="home-card annotation-home-card" >{props.annotation.content}</div>
+    <Item>
+      <Item.Content verticalAlign="middle">
+        {props.annotation.content}
+      </Item.Content>
+    </Item>
   );
 };
 
