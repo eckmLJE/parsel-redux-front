@@ -27,9 +27,7 @@ class CommentCard extends Component {
             </div>
           </Comment.Metadata>
           <Comment.Text>{this.props.comment.attributes.content}</Comment.Text>
-          <Comment.Actions>
-            <Comment.Action>Reply</Comment.Action>
-          </Comment.Actions>
+          <Comment.Actions />
         </Comment.Content>
       </Comment>
     );

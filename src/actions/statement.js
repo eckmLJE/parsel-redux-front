@@ -8,9 +8,15 @@ export const setCurrentStatement = statement => {
       type: "SET_STATEMENT",
       statement
     });
-    dispatch(push("/statement"));
+    // dispatch(push("/statement"));
   };
 };
+
+export const navToStatement = statementId => {
+  return dispatch => {
+    dispatch(push(`/statement/${statementId}`))
+  }
+}
 
 export const addStatements = statements => ({
   type: "ADD_STATEMENTS",

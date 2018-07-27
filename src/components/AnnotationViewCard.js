@@ -3,9 +3,20 @@ import { connect } from "react-redux";
 import { setHoverHighlight } from "../actions/highlight";
 import tags from "../interpreter/tags";
 import CommentCard from "./CommentCard";
-import { Comment, Button, Card } from "semantic-ui-react";
+import { Comment, Button, Card, Image, Container } from "semantic-ui-react";
+import _ from "lodash";
 
-const card = "home-card annotation-view-card";
+const avatars = [
+  "boy-1.svg",
+  "boy.svg",
+  "girl-1.svg",
+  "girl.svg",
+  "man-1.svg",
+  "man-2.svg",
+  "man-3.svg",
+  "man-4.svg",
+  "man.svg"
+];
 
 class AnnotationViewCard extends Component {
   state = { expanded: false, comments: false };
@@ -20,14 +31,14 @@ class AnnotationViewCard extends Component {
         <Card.Content>
           <Card.Description>
             {this.props.annotation.content.slice(0, 20) + "..."}
+            <Button
+              size="mini"
+              basic
+              icon="angle down"
+              floated="right"
+              onClick={this.handleExpandClick}
+            />
           </Card.Description>
-          <Button
-            size="mini"
-            basic
-            icon="angle down"
-            floated="right"
-            onClick={this.handleExpandClick}
-          />
         </Card.Content>
       </Card>
     );
@@ -37,10 +48,26 @@ class AnnotationViewCard extends Component {
     return (
       <Card>
         <Card.Content>
-          <Card.Header>{this.getUserAttributes().username}</Card.Header>
+          <Image
+            floated="left"
+            size="mini"
+            src={require(`../assets/avatars/${_.sample(avatars)}`)}
+          />
+          <Card.Header>
+            {this.getUserAttributes().username}
+            <Button
+              size="mini"
+              basic
+              icon="angle up"
+              floated="right"
+              onClick={this.handleExpandClick}
+            />
+          </Card.Header>
+
           <Card.Meta>
             {`Reputation: ${this.getUserAttributes().points}`}
           </Card.Meta>
+
           <Card.Description>{this.props.annotation.content}</Card.Description>
         </Card.Content>
         <Card.Content extra>
@@ -80,32 +107,32 @@ class AnnotationViewCard extends Component {
     );
   };
 
-  setClassName = () => {
-    return this.props.currentHighlight.includes(this.props.annotation.name)
-      ? card + " annotation-view-card-highlight"
-      : card;
-  };
+  // setClassName = () => {
+  //   return this.props.currentHighlight.includes(this.props.annotation.name)
+  //     ? card + " annotation-view-card-highlight"
+  //     : card;
+  // };
 
   render() {
     return (
-      <div>
-        <div
-          className={this.setClassName()}
+      <Container>
+        {/* <div
+          className=""
           onMouseEnter={() =>
             this.props.setHoverHighlight(this.props.annotation.name)
           }
           onMouseLeave={() => this.props.setHoverHighlight("none")}
-        >
-          {this.state.expanded ? this.renderExpandCard() : this.renderMinCard()}
-        </div>
-        <Comment.Group>
+        > */}
+        {this.state.expanded ? this.renderExpandCard() : this.renderMinCard()}
+        {/* </div> */}
+        <Comment.Group style={{marginBottom: 22}}>
           {this.state.expanded && this.state.comments
             ? this.getComments().map(comment => (
                 <CommentCard key={comment.id} comment={comment} />
               ))
             : null}
         </Comment.Group>
-      </div>
+      </Container>
     );
   }
 }

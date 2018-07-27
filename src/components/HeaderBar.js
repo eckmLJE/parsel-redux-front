@@ -12,12 +12,6 @@ const HeaderBar = () => {
         <li>
           <Link to="/statement">Statement</Link>
         </li>
-        <li>
-          <Link to="/search">Search</Link>
-        </li>
-        <li>
-          <Link to="/user">User</Link>
-        </li>
       </ul>
     </div>
   );

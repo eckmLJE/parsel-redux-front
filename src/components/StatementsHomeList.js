@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setCurrentStatement, fetchStatements } from "../actions/statement";
-import { Item } from "semantic-ui-react";
+import { Item, Header, Container } from "semantic-ui-react";
 
 import StatementCard from "./StatementCard";
 
@@ -19,20 +19,23 @@ class StatementsHomeList extends Component {
 
   render() {
     return (
-      <Item.Group>
-        {this.props.statementLoadingStatus ? (
-          <div>Loading Statements...</div>
-        ) : null}
-        {this.props.availableStatements.length > 0
-          ? this.props.availableStatements.map(statement => (
-              <StatementCard
-                key={statement.id}
-                statement={statement}
-                politician={this.findPolitician(statement)}
-              />
-            ))
-          : null}
-      </Item.Group>
+      <Container>
+        <Header as="h1">Featured Statements</Header>
+        <Item.Group divided>
+          {this.props.statementLoadingStatus ? (
+            <div>Loading Statements...</div>
+          ) : null}
+          {this.props.availableStatements.length > 0
+            ? this.props.availableStatements.map(statement => (
+                <StatementCard
+                  key={statement.id}
+                  statement={statement}
+                  politician={this.findPolitician(statement)}
+                />
+              ))
+            : null}
+        </Item.Group>
+      </Container>
     );
   }
 }
