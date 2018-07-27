@@ -22,7 +22,7 @@ class AnnotationViewCard extends Component {
   state = { expanded: false, comments: false };
 
   handleExpandClick = () => {
-    this.setState({ expanded: !this.state.expanded });
+    this.setState({ expanded: !this.state.expanded, comments: false });
   };
 
   renderMinCard = () => {
@@ -75,7 +75,9 @@ class AnnotationViewCard extends Component {
           <Button
             basic
             floated="right"
-            onClick={() => this.setState({ comments: !this.state.comments })}
+            onClick={() => {
+              this.setState({ comments: !this.state.comments });
+            }}
           >
             Comments
           </Button>
@@ -94,16 +96,14 @@ class AnnotationViewCard extends Component {
 
   getUserAttributes = () => {
     const user = this.props.availableUsers.find(
-      user => user.id.toString() === this.props.annotation.user
+      user => user.id === this.props.annotation["user_id"].toString()
     );
     return user.attributes;
   };
 
   getComments = () => {
-    return this.props.availableComments.filter(
-      comment =>
-        comment.attributes["annotation-id"].toString() ===
-        this.props.annotation.id
+    return this.props.currentStatement.attributes.comments.filter(
+      comment => comment["annotation_id"].toString() == this.props.annotation.id
     );
   };
 
@@ -116,17 +116,11 @@ class AnnotationViewCard extends Component {
   render() {
     return (
       <Container>
-        {/* <div
-          className=""
-          onMouseEnter={() =>
-            this.props.setHoverHighlight(this.props.annotation.name)
-          }
-          onMouseLeave={() => this.props.setHoverHighlight("none")}
-        > */}
         {this.state.expanded ? this.renderExpandCard() : this.renderMinCard()}
-        {/* </div> */}
-        <Comment.Group style={{marginBottom: 22}}>
-          {this.state.expanded && this.state.comments
+        <Comment.Group style={{ marginBottom: 22 }}>
+          {this.state.expanded &&
+          this.state.comments &&
+          this.props.currentComments
             ? this.getComments().map(comment => (
                 <CommentCard key={comment.id} comment={comment} />
               ))
@@ -140,7 +134,8 @@ class AnnotationViewCard extends Component {
 const mapStateToProps = state => ({
   currentHighlight: state.highlights.currentHighlight,
   availableUsers: state.users.availableUsers,
-  availableComments: state.comments.availableComments
+  currentComments: state.comments.currentComments,
+  currentStatement: state.statements.currentStatement
 });
 
 const mapDispatchToProps = dispatch => ({

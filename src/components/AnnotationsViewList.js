@@ -6,9 +6,7 @@ import { Card } from "semantic-ui-react";
 
 class AnnotationsViewList extends Component {
   getCurrentAnnotations = () => {
-    let currentAnnotations = this.props.availableAnnotations.filter(
-      annotation => annotation.statementId === this.props.currentStatement.id
-    );
+    let currentAnnotations = this.props.currentStatement.attributes.annotations;
     return currentAnnotations.sort((a, b) => a.start > b.start);
   };
 
@@ -16,7 +14,7 @@ class AnnotationsViewList extends Component {
     return (
       <Card.Group>
         <h3>Annotations</h3>
-        {this.props.currentStatement
+        {this.props.currentStatement && this.props.availableUsers
           ? this.getCurrentAnnotations().map(annotation => (
               <AnnotationViewCard key={annotation.id} annotation={annotation} />
             ))
@@ -28,7 +26,9 @@ class AnnotationsViewList extends Component {
 
 const mapStateToProps = state => ({
   availableAnnotations: state.annotations.availableAnnotations,
-  currentStatement: state.statements.currentStatement
+  currentStatement: state.statements.currentStatement,
+  statementLoadingStatus: state.statements.statementLoadingStatus,
+  availableUsers: state.users.availableUsers
 });
 
 const mapDispatchToProps = dispatch => ({

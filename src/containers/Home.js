@@ -6,7 +6,7 @@ import { fetchPoliticians } from "../actions/politician";
 import { fetchUsers } from "../actions/user";
 import { fetchComments } from "../actions/comment";
 
-import AnnotationsHomeList from "../components/AnnotationsHomeList";
+// import AnnotationsHomeList from "../components/AnnotationsHomeList";
 import StatementsHomeList from "../components/StatementsHomeList";
 
 class Home extends Component {
@@ -25,7 +25,7 @@ class Home extends Component {
               <StatementsHomeList />
             </Grid.Column>
             <Grid.Column width={6}>
-              <AnnotationsHomeList />
+              {/* <AnnotationsHomeList /> */}
             </Grid.Column>
           </Grid.Row>
         </Grid>

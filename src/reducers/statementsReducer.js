@@ -8,8 +8,14 @@ const statements = (
 ) => {
   switch (action.type) {
     case "SET_STATEMENT":
-      return { ...state, currentStatement: action.statement };
+      return {
+        ...state,
+        currentStatement: action.statement,
+        statementLoadingStatus: false
+      };
     case "START_FETCHING_STATEMENTS_REQUEST":
+      return { ...state, statementLoadingStatus: true };
+    case "START_FETCHING_STATEMENT_REQUEST":
       return { ...state, statementLoadingStatus: true };
     case "ADD_STATEMENTS":
       return {

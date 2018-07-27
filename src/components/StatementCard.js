@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setCurrentStatement } from "../actions/statement";
 import { Item, Popup } from "semantic-ui-react";
 import colors from "../interpreter/colors";
 import { navToStatement } from "../actions/statement";
@@ -54,7 +53,6 @@ const StatementCard = props => (
 );
 
 const mapDispatchToProps = dispatch => ({
-  // setStatement: statementObj => dispatch(setCurrentStatement(statementObj)),
   navToStatement: statementId => dispatch(navToStatement(statementId))
 });
 
