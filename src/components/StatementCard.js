@@ -4,14 +4,14 @@ import { Item, Popup } from "semantic-ui-react";
 import colors from "../interpreter/colors";
 import { navToStatement } from "../actions/statement";
 
-const sampleStats = [
-  { color: colors.red, percent: 20, count: 10 },
-  { color: colors.blue, percent: 30, count: 15 },
-  { color: colors.gold, percent: 40, count: 20 },
-  { color: colors.green, percent: 10, count: 5 }
-];
-
 class StatementCard extends Component {
+  tagNames = {
+    fact_check: "Fact Check",
+    undeniable: "Undeniable",
+    inspire: "Inspiring",
+    snake: "Snake"
+  };
+
   countTags = () => {
     const tags = {
       fact_check: 0,
@@ -31,30 +31,32 @@ class StatementCard extends Component {
     return values.reduce(reducer);
   };
 
+  makePercentFixed = (num, total) => ((num / total) * 100).toFixed(1);
+
   makeTagStats = (tags, total) => {
     return [
       {
         tag_type: "fact_check",
         color: colors.red,
-        percent: (tags.fact_check / total) * 100,
+        percent: this.makePercentFixed(tags.fact_check, total),
         count: tags.fact_check
       },
       {
         tag_type: "undeniable",
         color: colors.blue,
-        percent: (tags.undeniable / total) * 100,
+        percent: this.makePercentFixed(tags.undeniable, total),
         count: tags.undeniable
       },
       {
         tag_type: "inspire",
         color: colors.gold,
-        percent: (tags.inspire / total) * 100,
+        percent: this.makePercentFixed(tags.inspire, total),
         count: tags.inspire
       },
       {
         tag_type: "snake",
         color: colors.green,
-        percent: (tags.snake / total) * 100,
+        percent: this.makePercentFixed(tags.snake, total),
         count: tags.snake
       }
     ];
@@ -107,7 +109,9 @@ class StatementCard extends Component {
                   stat.percent,
                   stat.count
                 )}
-                content={`${stat.count} ${stat.color} tags at ${stat.percent}%`}
+                content={`${this.tagNames[stat.tag_type]} (${stat.count}) - ${
+                  stat.percent
+                }%`}
                 basic
                 inverted
                 position="bottom center"
