@@ -4,19 +4,6 @@ import { setHoverHighlight } from "../actions/highlight";
 import tags from "../interpreter/tags";
 import CommentCard from "./CommentCard";
 import { Comment, Button, Card, Image, Container } from "semantic-ui-react";
-import _ from "lodash";
-
-const avatars = [
-  "boy-1.svg",
-  "boy.svg",
-  "girl-1.svg",
-  "girl.svg",
-  "man-1.svg",
-  "man-2.svg",
-  "man-3.svg",
-  "man-4.svg",
-  "man.svg"
-];
 
 class AnnotationViewCard extends Component {
   state = { expanded: false, comments: false };
@@ -51,7 +38,9 @@ class AnnotationViewCard extends Component {
           <Image
             floated="left"
             size="mini"
-            src={require(`../assets/avatars/${_.sample(avatars)}`)}
+            src={require(`../assets/avatars/${
+              this.getUserAttributes().avatar
+            }`)}
           />
           <Card.Header>
             {this.getUserAttributes().username}

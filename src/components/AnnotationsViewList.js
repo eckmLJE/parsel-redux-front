@@ -13,7 +13,6 @@ class AnnotationsViewList extends Component {
   render() {
     return (
       <Card.Group>
-        <h3>Annotations</h3>
         {this.props.currentStatement && this.props.availableUsers
           ? this.getCurrentAnnotations().map(annotation => (
               <AnnotationViewCard key={annotation.id} annotation={annotation} />

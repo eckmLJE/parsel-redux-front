@@ -4,19 +4,42 @@ import HighlightSpan from "./HighlightSpan";
 import TextFragment from "./TextFragment";
 
 class StatementViewCard extends Component {
-  componentDidMount = () => {};
+  convertId = id => {
+    let numId = parseInt(id, 10) + 1000;
+    return numId.toString();
+  };
+
+  mapConvertAnnotations = annotations => {
+    return annotations.map(annotation => ({
+      id: annotation.id,
+      name: this.convertId(annotation.id),
+      start: annotation.start,
+      end: annotation.end,
+      content: annotation.content,
+      statementId: annotation["statement_id"].toString(),
+      user: annotation["user_id"],
+      points: annotation.points
+    }));
+  };
 
   processAnnotations = () => {
     let highlights = [];
     let lastEnd = 0;
-    let currentAnnotations = this.props.availableAnnotations.filter(
-      annotation => annotation.statementId === this.props.currentStatement.id
+    // let currentAnnotations = this.props.availableAnnotations.filter(
+    //   annotation => annotation.statementId === this.props.currentStatement.id
+    // );
+    let currentAnnotations = this.mapConvertAnnotations(
+      this.props.currentStatement.attributes.annotations
     );
     currentAnnotations = currentAnnotations.sort((a, b) => a.start > b.start);
     currentAnnotations.forEach(annotation => {
       if (annotation.start > lastEnd) {
         highlights.push(
-          this.createHighlight(annotation.name, annotation.start, annotation.end)
+          this.createHighlight(
+            annotation.name,
+            annotation.start,
+            annotation.end
+          )
         );
         lastEnd = annotation.end;
       } else {
