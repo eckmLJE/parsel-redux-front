@@ -92,7 +92,7 @@ class AnnotationViewCard extends Component {
 
   getComments = () => {
     return this.props.currentStatement.attributes.comments.filter(
-      comment => comment["annotation_id"].toString() == this.props.annotation.id
+      comment => comment["annotation_id"] === this.props.annotation.id
     );
   };
 

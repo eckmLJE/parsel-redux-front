@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setCurrentStatement, fetchStatements } from "../actions/statement";
-import { Item, Header, Container } from "semantic-ui-react";
+import { Item, Container } from "semantic-ui-react";
 
 import StatementCard from "./StatementCard";
 
@@ -20,7 +20,6 @@ class StatementsHomeList extends Component {
   render() {
     return (
       <Container>
-        <Header as="h1">Featured Statements</Header>
         <Item.Group divided>
           {this.props.statementLoadingStatus ? (
             <div>Loading Statements...</div>
