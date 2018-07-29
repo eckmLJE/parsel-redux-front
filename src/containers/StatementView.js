@@ -17,12 +17,12 @@ class StatementView extends Component {
     return (
       <Container style={{ maxWidth: 700, margin: "auto", marginTop: 50 }}>
         {this.props.currentStatement && this.props.currentComments ? (
-          <Grid divided stackable>
+          <Grid stackable>
             <Grid.Row>
-              <Grid.Column width={10}>
+              <Grid.Column width={9}>
                 <StatementViewCard />
               </Grid.Column>
-              <Grid.Column width={6}>
+              <Grid.Column width={7}>
                 <AnnotationsViewList />
               </Grid.Column>
             </Grid.Row>

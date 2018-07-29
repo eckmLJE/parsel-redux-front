@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import HighlightSpan from "./HighlightSpan";
 import TextFragment from "./TextFragment";
+import { Segment, Header, Container } from "semantic-ui-react";
 
 class StatementViewCard extends Component {
   convertId = id => {
@@ -101,14 +102,25 @@ class StatementViewCard extends Component {
 
   render() {
     return (
-      <div className="home-card statement-view-content">
+      <Container>
         {this.props.currentStatement ? (
-          <div>
-            <h2>{this.props.currentStatement.attributes.title}</h2>
-            <div>{this.makeStatementArray()}</div>
-          </div>
+          <Segment
+            raised
+            style={{
+              fontSize: "1.2em",
+              textAlign: "justify",
+              maxHeight: "80vh",
+              overflowY: "scroll",
+              padding: "10px"
+            }}
+          >
+            <Header as="h2">
+              {this.props.currentStatement.attributes.title}
+            </Header>
+            {this.makeStatementArray()}
+          </Segment>
         ) : null}
-      </div>
+      </Container>
     );
   }
 }

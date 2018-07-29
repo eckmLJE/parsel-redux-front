@@ -7,6 +7,7 @@ let key = 0;
 const HighlightSpan = props => {
   return (
     <span
+      style={{ position: "relative" }}
       className={
         props.name.includes(props.currentHighlight) ||
         props.currentHighlight.includes(props.name)
@@ -28,7 +29,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setHoverHighlight: (name) => dispatch(setHoverHighlight(name))
+  setHoverHighlight: name => dispatch(setHoverHighlight(name))
 });
 
 export default connect(

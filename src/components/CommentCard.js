@@ -1,16 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Comment } from "semantic-ui-react";
+import { Comment, Image } from "semantic-ui-react";
 import moment from "moment";
 
-
 class CommentCard extends Component {
-
   getUserAttributes = () => {
     const user = this.props.availableUsers.find(
-      user =>
-        user.id.toString() ===
-        this.props.comment["user_id"].toString()
+      user => user.id.toString() === this.props.comment["user_id"].toString()
     );
     return user.attributes;
   };
@@ -18,15 +14,20 @@ class CommentCard extends Component {
   render() {
     return (
       <Comment>
-        <Comment.Avatar />
+        {/* <Comment.Avatar /> */}
         <Comment.Content>
+          <Image
+            floated="left"
+            size="mini"
+            src={require(`../assets/avatars/${
+              this.getUserAttributes().avatar
+            }`)}
+          />
           <Comment.Author as="a">
             {this.getUserAttributes().username}
           </Comment.Author>
           <Comment.Metadata>
-            <div>
-              {moment(this.props.comment.created_at).calendar()}
-            </div>
+            <div>{moment(this.props.comment.created_at).calendar()}</div>
           </Comment.Metadata>
           <Comment.Text>{this.props.comment.content}</Comment.Text>
           <Comment.Actions />

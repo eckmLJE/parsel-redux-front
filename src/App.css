@@ -3,7 +3,6 @@
   margin: auto;
   color: black;
   line-height: 40px;
-  margin-bottom: 10px;
 }
 
 .logo {
@@ -52,10 +51,12 @@ li a {
 
 .highlight {
   background-color: rgb(170, 21, 21);
+  color: white;
 }
 
 .highlight-alt {
   background-color: rgb(173, 102, 102);
+  color: white;
 }
 
 .spectrum {

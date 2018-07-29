@@ -3,7 +3,13 @@ import { connect } from "react-redux";
 import { setHoverHighlight } from "../actions/highlight";
 import tags from "../interpreter/tags";
 import CommentCard from "./CommentCard";
-import { Comment, Button, Card, Image, Container } from "semantic-ui-react";
+import {
+  Comment,
+  Button,
+  Card,
+  Image,
+  Container
+} from "semantic-ui-react";
 
 class AnnotationViewCard extends Component {
   state = { expanded: false, comments: false };
@@ -14,17 +20,27 @@ class AnnotationViewCard extends Component {
 
   renderMinCard = () => {
     return (
-      <Card>
+      <Card fluid>
         <Card.Content>
           <Card.Description>
-            {this.props.annotation.content.slice(0, 20) + "..."}
-            <Button
+            <Image
+              floated="left"
               size="mini"
-              basic
-              icon="angle down"
-              floated="right"
-              onClick={this.handleExpandClick}
+              src={require(`../assets/avatars/${
+                this.getUserAttributes().avatar
+              }`)}
             />
+            {this.getUserAttributes().username}
+            <Card.Meta>
+              {this.props.annotation.content.slice(0, 20) + "..."}
+              <Button
+                size="mini"
+                basic
+                icon="angle down"
+                floated="right"
+                onClick={this.handleExpandClick}
+              />
+            </Card.Meta>
           </Card.Description>
         </Card.Content>
       </Card>
@@ -33,7 +49,7 @@ class AnnotationViewCard extends Component {
 
   renderExpandCard = () => {
     return (
-      <Card>
+      <Card fluid>
         <Card.Content>
           <Image
             floated="left"
@@ -59,6 +75,7 @@ class AnnotationViewCard extends Component {
 
           <Card.Description>{this.props.annotation.content}</Card.Description>
         </Card.Content>
+        <Card.Content extra>Tags Go Here</Card.Content>
         <Card.Content extra>
           {"Points: "} {this.props.annotation.points}
           <Button
@@ -106,7 +123,7 @@ class AnnotationViewCard extends Component {
     return (
       <Container>
         {this.state.expanded ? this.renderExpandCard() : this.renderMinCard()}
-        <Comment.Group style={{ marginBottom: 22 }}>
+        <Comment.Group size="small" style={{ marginBottom: 22 }}>
           {this.state.expanded &&
           this.state.comments &&
           this.props.currentComments

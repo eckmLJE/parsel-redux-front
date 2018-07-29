@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Item, Popup } from "semantic-ui-react";
 import colors from "../interpreter/colors";
-import { navToStatement } from "../actions/statement";
+import { Item, Popup } from "semantic-ui-react";
 
-class StatementCard extends Component {
+class PoliticianCard extends Component {
   tagNames = {
     fact_check: "Fact Check",
     truth: "True",
@@ -19,7 +17,7 @@ class StatementCard extends Component {
       deceptive: 0,
       truth: 0
     };
-    this.props.statement.attributes.tags.forEach(tag => {
+    this.props.politician.attributes.tags.forEach(tag => {
       tags[tag.tag_type]++;
     });
     return tags;
@@ -83,14 +81,10 @@ class StatementCard extends Component {
 
   render() {
     return (
-      <Item
-        onClick={() => {
-          this.props.navToStatement(this.props.statement.id);
-        }}
-      >
+      <Item>
         <Item.Content>
           <Item.Header as="a">
-            {this.props.statement.attributes.title}
+            {this.props.politician.attributes.name}
           </Item.Header>
           <Item.Meta>
             {this.props.politician ? (
@@ -125,15 +119,4 @@ class StatementCard extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  currentStatement: state.statements.currentStatement
-});
-
-const mapDispatchToProps = dispatch => ({
-  navToStatement: statementId => dispatch(navToStatement(statementId))
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(StatementCard);
+export default PoliticianCard;

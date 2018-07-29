@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid, Container } from "semantic-ui-react";
+import { Grid, Container, Header, Divider } from "semantic-ui-react";
 
 import { fetchPoliticians } from "../actions/politician";
 import { fetchUsers } from "../actions/user";
@@ -8,6 +8,7 @@ import { fetchComments } from "../actions/comment";
 
 // import AnnotationsHomeList from "../components/AnnotationsHomeList";
 import StatementsHomeList from "../components/StatementsHomeList";
+import PoliticianHomeList from "../components/PoliticianHomeList";
 
 class Home extends Component {
   componentDidMount = () => {
@@ -18,14 +19,18 @@ class Home extends Component {
 
   render() {
     return (
-      <Container style={{ maxWidth: 700, margin: "auto", marginTop: 50 }}>
-        <Grid divided stackable>
+      <Container style={{ maxWidth: "700px", margin: "auto", marginTop: 20 }}>
+        <Grid stackable>
           <Grid.Row>
             <Grid.Column width={10}>
+              <Header as="h2">Featured Statements</Header>
+              <Divider />
               <StatementsHomeList />
             </Grid.Column>
             <Grid.Column width={6}>
-              {/* <AnnotationsHomeList /> */}
+              <Header as="h2">Featured Politicians</Header>
+              <Divider />
+              <PoliticianHomeList />
             </Grid.Column>
           </Grid.Row>
         </Grid>
