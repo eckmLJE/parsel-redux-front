@@ -1,11 +1,13 @@
 import React from "react";
 import { Rail, Label } from "semantic-ui-react";
+import semColors from "../interpreter/semColors";
 
 const StatementViewRail = props => {
   return (
     <Rail position="right" style={{ padding: 0, margin: 0 }}>
       <Label
-        color="teal"
+        color={semColors[props.index]}
+        basic
         size="small"
         style={{ cursor: "default", top: props.yPos }}
         image

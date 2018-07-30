@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Grid, Segment, Rail, Label } from "semantic-ui-react";
+import { Container, Grid, Segment } from "semantic-ui-react";
 import { setCurrentStatement } from "../actions/statement";
 import { connect } from "react-redux";
 import { fetchUsers } from "../actions/user";
@@ -20,7 +20,7 @@ class StatementView extends Component {
       <Container style={{ margin: "auto", marginTop: 30 }}>
         {this.props.currentStatement ? (
           <Grid centered columns={3}>
-            <Grid.Column width={8}>
+            <Grid.Column width={9}>
               <Segment raised>
                 {/* <Rail position="right" style={{ padding: 0, margin: 0 }}>
                   <Label
@@ -39,6 +39,9 @@ class StatementView extends Component {
                         key={highlight.id}
                         yPos={highlight.position - 70}
                         id={highlight.id}
+                        index={this.props.currentHighlightPositions.indexOf(
+                          highlight
+                        )}
                       />
                     ))
                   : null}
@@ -47,7 +50,8 @@ class StatementView extends Component {
                   style={{
                     fontSize: "1.3em",
                     width: "90%",
-                    textAlign: "justify"
+                    textAlign: "justify",
+                    lineHeight: "1.5em"
                   }}
                 >
                   <StatementViewContent />

@@ -24,6 +24,7 @@ class AnnotationsViewList extends Component {
                 <AnnotationViewCard
                   key={annotation.id}
                   annotation={annotation}
+                  index={this.getCurrentAnnotations().indexOf(annotation)}
                 />
               ))
             : null}

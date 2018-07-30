@@ -9,6 +9,8 @@ import { connect } from "react-redux";
 let key = 0;
 
 class HighlightSpan extends Component {
+  state = { color: "red" };
+
   logHighlightPos = node => {
     if (node === null) {
       this.props.removeHighlightPosition(this.props.id);
@@ -24,16 +26,15 @@ class HighlightSpan extends Component {
     return (
       <span
         ref={this.logHighlightPos}
-        className={
-          this.props.name.includes(this.props.currentHighlight) ||
-          this.props.currentHighlight.includes(this.props.name)
-            ? "highlight-alt"
-            : "highlight"
-        }
+        style={{
+          borderBottom: "2px solid",
+          borderColor: this.state.color,
+          cursor: "default"
+        }}
         name={this.props.name}
         key={++key}
-        onMouseEnter={() => this.props.setHoverHighlight(this.props.name)}
-        onMouseLeave={() => this.props.setHoverHighlight("none")}
+        onMouseEnter={() => this.setState({ color: "blue" })}
+        onMouseLeave={() => this.setState({ color: "red" })}
       >
         {this.props.content}
       </span>

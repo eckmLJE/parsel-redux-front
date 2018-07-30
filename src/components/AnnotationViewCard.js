@@ -13,6 +13,7 @@ import {
   Divider
 } from "semantic-ui-react";
 import colors from "../interpreter/colors";
+import semColors from "../interpreter/semColors";
 
 class AnnotationViewCard extends Component {
   state = { expanded: false, comments: false };
@@ -106,7 +107,7 @@ class AnnotationViewCard extends Component {
 
   renderMinCard = () => {
     return (
-      <Card fluid>
+      <Card fluid inverted color={semColors[this.props.index]}>
         <Card.Content>
           <Card.Description>
             <Image
@@ -135,7 +136,7 @@ class AnnotationViewCard extends Component {
 
   renderExpandCard = () => {
     return (
-      <Card fluid>
+      <Card fluid inverted color={semColors[this.props.index]}>
         <Card.Content>
           <Image
             floated="left"
