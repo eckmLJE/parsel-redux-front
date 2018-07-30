@@ -17,19 +17,17 @@ class AnnotationsViewList extends Component {
 
   render() {
     return (
-      <div style={{ height: "80vh", overflowY: "scroll", overflowX: "hidden" }}>
-        <Card.Group style={{ margin: 5 }}>
-          {this.props.currentStatement && this.props.availableUsers
-            ? this.getCurrentAnnotations().map(annotation => (
-                <AnnotationViewCard
-                  key={annotation.id}
-                  annotation={annotation}
-                  index={this.getCurrentAnnotations().indexOf(annotation)}
-                />
-              ))
-            : null}
-        </Card.Group>
-      </div>
+      <Card.Group style={{ margin: 5 }}>
+        {this.props.currentStatement && this.props.availableUsers
+          ? this.getCurrentAnnotations().map(annotation => (
+              <AnnotationViewCard
+                key={annotation.id}
+                annotation={annotation}
+                index={this.getCurrentAnnotations().indexOf(annotation)}
+              />
+            ))
+          : null}
+      </Card.Group>
     );
   }
 }

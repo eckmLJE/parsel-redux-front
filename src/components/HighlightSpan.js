@@ -5,12 +5,11 @@ import {
   removeHighlightPosition
 } from "../actions/highlight";
 import { connect } from "react-redux";
+import semColors from "../interpreter/semColors";
 
 let key = 0;
 
 class HighlightSpan extends Component {
-  state = { color: "red" };
-
   logHighlightPos = node => {
     if (node === null) {
       this.props.removeHighlightPosition(this.props.id);
@@ -27,14 +26,12 @@ class HighlightSpan extends Component {
       <span
         ref={this.logHighlightPos}
         style={{
-          borderBottom: "2px solid",
-          borderColor: this.state.color,
-          cursor: "default"
+          borderBottom: `solid 5px ${semColors[this.props.index]}`
         }}
         name={this.props.name}
         key={++key}
-        onMouseEnter={() => this.setState({ color: "blue" })}
-        onMouseLeave={() => this.setState({ color: "red" })}
+        // onMouseEnter={() => this.setState({ color: "blue" })}
+        // onMouseLeave={() => this.setState({ color: "red" })}
       >
         {this.props.content}
       </span>

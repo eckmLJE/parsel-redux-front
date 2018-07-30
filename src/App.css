@@ -6,7 +6,6 @@
 }
 
 .logo {
-  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -14,49 +13,6 @@
   text-align: center;
   font-size: 1.6em;
   font-weight: 550;
-}
-
-.bottom-bar {
-  position: fixed;
-  background-color: black;
-  height: 25px;
-  bottom: 0;
-  width: 100%;
-  margin: auto;
-  color: white;
-  line-height: 25px;
-  text-align: center;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: 10;
-}
-
-li {
-  float: left;
-  padding-left: 10px;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-}
-
-.highlight {
-  background-color: rgb(170, 21, 21);
-  color: white;
-}
-
-.highlight-alt {
-  background-color: rgb(173, 102, 102);
-  color: white;
 }
 
 .spectrum {

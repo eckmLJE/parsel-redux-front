@@ -107,7 +107,7 @@ class AnnotationViewCard extends Component {
 
   renderMinCard = () => {
     return (
-      <Card fluid inverted color={semColors[this.props.index]}>
+      <Card fluid color={semColors[this.props.index]}>
         <Card.Content>
           <Card.Description>
             <Image
@@ -117,7 +117,9 @@ class AnnotationViewCard extends Component {
                 this.getUserAttributes().avatar
               }`)}
             />
-            {this.getUserAttributes().username}
+            <Card.Header floated="right" as="h5" style={{margin: 0, padding: 0}}>
+              {this.getUserAttributes().username}
+            </Card.Header>
             <Card.Meta>
               {this.props.annotation.content.slice(0, 20) + "..."}
               <Button
@@ -136,7 +138,7 @@ class AnnotationViewCard extends Component {
 
   renderExpandCard = () => {
     return (
-      <Card fluid inverted color={semColors[this.props.index]}>
+      <Card fluid color={semColors[this.props.index]}>
         <Card.Content>
           <Image
             floated="left"

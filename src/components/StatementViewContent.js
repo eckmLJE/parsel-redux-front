@@ -56,7 +56,12 @@ class StatementViewCard extends Component {
         );
 
         highlights.push(
-          this.createHighlight(annotation.id, annotation.name, prevEnd, annotation.end)
+          this.createHighlight(
+            annotation.id,
+            annotation.name,
+            prevEnd,
+            annotation.end
+          )
         );
         lastEnd = annotation.end;
       }
@@ -76,6 +81,7 @@ class StatementViewCard extends Component {
     const highlights = this.processAnnotations();
     let newStatementArray = [];
     let charCounter = 0;
+    let colorCounter = 0;
     highlights.forEach(highlight => {
       newStatementArray.push(
         <TextFragment
@@ -89,8 +95,10 @@ class StatementViewCard extends Component {
           name={highlight.name}
           key={highlight.name}
           id={highlight.id}
+          index={colorCounter}
         />
       );
+      colorCounter++;
       charCounter = highlight.end;
     });
     if (statement.length >= charCounter) {
