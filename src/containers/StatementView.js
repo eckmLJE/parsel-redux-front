@@ -17,39 +17,14 @@ class StatementView extends Component {
     return (
       <Container style={{ maxWidth: 700, margin: "auto" }}>
         {this.props.currentStatement && this.props.currentComments ? (
-          <Grid centered stackable columns={2}>
+          <Grid centered columns={3}>
             <Grid.Column width={8}>
               <Segment raised>
-                <Rail position="left">
+                <Rail position="right" style={{ padding: 0, margin: 0 }}>
                   <Label
                     color="teal"
-                    ribbon
                     size="small"
-                    style={{ cursor: "default", top: 25, right: 0 }}
-                    image
-                  >
-                    <img alt="" src={require(`../assets/avatars/man-1.svg`)} />
-                    <Label.Detail>John</Label.Detail>
-                  </Label>
-                </Rail>
-                <Rail position="left">
-                  <Label
-                    color="teal"
-                    ribbon
-                    size="small"
-                    style={{ cursor: "default", top: 100, right: 0 }}
-                    image
-                  >
-                    <img alt="" src={require(`../assets/avatars/man-1.svg`)} />
-                    <Label.Detail>John</Label.Detail>
-                  </Label>
-                </Rail>
-                <Rail position="left">
-                  <Label
-                    color="teal"
-                    ribbon
-                    size="small"
-                    style={{ cursor: "default", top: 200, right: 0 }}
+                    style={{ cursor: "default", top: 100 }}
                     image
                   >
                     <img alt="" src={require(`../assets/avatars/man-1.svg`)} />
@@ -60,7 +35,6 @@ class StatementView extends Component {
                   text
                   style={{
                     width: "90%",
-                    paddingRight: 60,
                     textAlign: "justify"
                   }}
                 >
@@ -68,6 +42,7 @@ class StatementView extends Component {
                 </Container>
               </Segment>
             </Grid.Column>
+            <Grid.Column width={1} />
             <Grid.Column width={6}>
               <AnnotationsViewList />
             </Grid.Column>
