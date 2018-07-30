@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Container, Grid } from "semantic-ui-react";
+import { Container, Grid, Segment, Label, Rail } from "semantic-ui-react";
 import { setCurrentStatement } from "../actions/statement";
 import { connect } from "react-redux";
 import { fetchUsers } from "../actions/user";
 
-import StatementViewCard from "../components/StatementViewCard";
+import StatementViewContent from "../components/StatementViewContent";
 import AnnotationsViewList from "../components/AnnotationsViewList";
 
 class StatementView extends Component {
@@ -15,17 +15,62 @@ class StatementView extends Component {
 
   render() {
     return (
-      <Container style={{ maxWidth: 700, margin: "auto", marginTop: 50 }}>
+      <Container style={{ maxWidth: 700, margin: "auto" }}>
         {this.props.currentStatement && this.props.currentComments ? (
-          <Grid stackable>
-            <Grid.Row>
-              <Grid.Column width={9}>
-                <StatementViewCard />
-              </Grid.Column>
-              <Grid.Column width={7}>
-                <AnnotationsViewList />
-              </Grid.Column>
-            </Grid.Row>
+          <Grid centered stackable columns={2}>
+            <Grid.Column width={8}>
+              <Segment raised>
+                <Rail position="left">
+                  <Label
+                    color="teal"
+                    ribbon
+                    size="small"
+                    style={{ cursor: "default", top: 25, right: 0 }}
+                    image
+                  >
+                    <img alt="" src={require(`../assets/avatars/man-1.svg`)} />
+                    <Label.Detail>John</Label.Detail>
+                  </Label>
+                </Rail>
+                <Rail position="left">
+                  <Label
+                    color="teal"
+                    ribbon
+                    size="small"
+                    style={{ cursor: "default", top: 100, right: 0 }}
+                    image
+                  >
+                    <img alt="" src={require(`../assets/avatars/man-1.svg`)} />
+                    <Label.Detail>John</Label.Detail>
+                  </Label>
+                </Rail>
+                <Rail position="left">
+                  <Label
+                    color="teal"
+                    ribbon
+                    size="small"
+                    style={{ cursor: "default", top: 200, right: 0 }}
+                    image
+                  >
+                    <img alt="" src={require(`../assets/avatars/man-1.svg`)} />
+                    <Label.Detail>John</Label.Detail>
+                  </Label>
+                </Rail>
+                <Container
+                  text
+                  style={{
+                    width: "90%",
+                    paddingRight: 60,
+                    textAlign: "justify"
+                  }}
+                >
+                  <StatementViewContent />
+                </Container>
+              </Segment>
+            </Grid.Column>
+            <Grid.Column width={6}>
+              <AnnotationsViewList />
+            </Grid.Column>
           </Grid>
         ) : null}
       </Container>

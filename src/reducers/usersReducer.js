@@ -1,7 +1,9 @@
 const users = (
   state = {
     availableUsers: [],
-    userLoadingStatus: false
+    userLoadingStatus: false,
+    userLoggedIn: true,
+    currentUser: 1
   },
   action
 ) => {

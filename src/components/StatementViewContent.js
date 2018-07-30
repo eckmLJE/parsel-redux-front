@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import HighlightSpan from "./HighlightSpan";
 import TextFragment from "./TextFragment";
-import { Segment, Header, Container } from "semantic-ui-react";
+import { Fragment } from "react";
 
 class StatementViewCard extends Component {
   convertId = id => {
@@ -26,9 +26,6 @@ class StatementViewCard extends Component {
   processAnnotations = () => {
     let highlights = [];
     let lastEnd = 0;
-    // let currentAnnotations = this.props.availableAnnotations.filter(
-    //   annotation => annotation.statementId === this.props.currentStatement.id
-    // );
     let currentAnnotations = this.mapConvertAnnotations(
       this.props.currentStatement.attributes.annotations
     );
@@ -101,30 +98,7 @@ class StatementViewCard extends Component {
   };
 
   render() {
-    return (
-      <Container>
-        {this.props.currentStatement ? (
-          <Segment
-            raised
-            style={{
-              fontSize: "1.2em",
-              textAlign: "justify",
-              maxHeight: "80vh",
-              overflowY: "scroll",
-              padding: "10px",
-              lineHeight: "1.5em"
-            }}
-          >
-            <div style={{ padding: 5, margin: 5 }}>
-              <Header as="h2">
-                {this.props.currentStatement.attributes.title}
-              </Header>
-              {this.makeStatementArray()}
-            </div>
-          </Segment>
-        ) : null}
-      </Container>
-    );
+    return <Fragment>{this.makeStatementArray()}</Fragment>;
   }
 }
 

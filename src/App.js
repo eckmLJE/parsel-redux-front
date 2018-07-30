@@ -9,6 +9,7 @@ import Home from "./containers/Home";
 import StatementView from "./containers/StatementView";
 import UserPage from "./containers/UserPage";
 import Search from "./containers/Search";
+import TestingView from "./containers/TestingView";
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
         <Route path="/statement/:id" component={StatementView} />
         <Route exact path="/user" component={UserPage} />
         <Route exact path="/search" component={Search} />
+        <Route exact path="/testing" component={TestingView} />
         {/* <BottomBar /> */}
       </div>
     );
