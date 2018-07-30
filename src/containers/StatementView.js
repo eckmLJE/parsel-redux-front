@@ -23,7 +23,7 @@ class StatementView extends Component {
     const { contextRef } = this.state;
     return (
       <Container style={{ margin: "auto", marginTop: 30 }}>
-        {this.props.currentStatement ? (
+        {this.props.currentStatement && !this.props.statementLoadingStatus ? (
           <Grid centered columns={3}>
             <Grid.Column width={8}>
               <Segment raised>
@@ -71,7 +71,8 @@ class StatementView extends Component {
 const mapStateToProps = state => ({
   currentStatement: state.statements.currentStatement,
   currentHighlightPositions: state.highlights.currentHighlightPositions,
-  currentUsers: state.users.availableUsers
+  currentUsers: state.users.availableUsers,
+  statementLoadingStatus: state.statements.statementLoadingStatus
 });
 
 const mapDispatchToProps = dispatch => ({
