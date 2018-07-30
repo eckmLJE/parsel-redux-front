@@ -26,9 +26,8 @@ const convertAnnotation = annotation => {
     end: annotation.attributes.end,
     content: annotation.attributes.content,
     statementId: annotation.attributes["statement-id"].toString(),
-    tags: annotation.relationships.tags.data.map(tag => tag.id.toString()),
-    user: annotation.relationships.user.data.id,
-    points: annotation.attributes.points
+    points: annotation.attributes.points,
+    tags: annotation.attributes.tags
   };
 };
 

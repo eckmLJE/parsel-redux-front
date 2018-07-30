@@ -2,9 +2,14 @@ import React, { Component } from "react";
 import AnnotationViewCard from "./AnnotationViewCard";
 import { connect } from "react-redux";
 import { fetchTags } from "../actions/tag";
+import { fetchAnnotations } from "../actions/annotation";
 import { Card } from "semantic-ui-react";
 
 class AnnotationsViewList extends Component {
+  componentDidMount = () => {
+    this.props.fetchAnnotations();
+  };
+
   getCurrentAnnotations = () => {
     let currentAnnotations = this.props.currentStatement.attributes.annotations;
     return currentAnnotations.sort((a, b) => a.start > b.start);
@@ -36,7 +41,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchTags: () => dispatch(fetchTags())
+  fetchTags: () => dispatch(fetchTags()),
+  fetchAnnotations: () => dispatch(fetchAnnotations())
 });
 
 export default connect(

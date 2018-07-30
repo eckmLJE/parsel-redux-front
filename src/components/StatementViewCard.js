@@ -111,13 +111,16 @@ class StatementViewCard extends Component {
               textAlign: "justify",
               maxHeight: "80vh",
               overflowY: "scroll",
-              padding: "10px"
+              padding: "10px",
+              lineHeight: "1.5em"
             }}
           >
-            <Header as="h2">
-              {this.props.currentStatement.attributes.title}
-            </Header>
-            {this.makeStatementArray()}
+            <div style={{ padding: 5, margin: 5 }}>
+              <Header as="h2">
+                {this.props.currentStatement.attributes.title}
+              </Header>
+              {this.makeStatementArray()}
+            </div>
           </Segment>
         ) : null}
       </Container>

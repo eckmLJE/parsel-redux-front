@@ -3,13 +3,8 @@ import { connect } from "react-redux";
 import { setHoverHighlight } from "../actions/highlight";
 import tags from "../interpreter/tags";
 import CommentCard from "./CommentCard";
-import {
-  Comment,
-  Button,
-  Card,
-  Image,
-  Container
-} from "semantic-ui-react";
+import { Comment, Button, Card, Image, Container, Popup } from "semantic-ui-react";
+import colors from "../interpreter/colors";
 
 class AnnotationViewCard extends Component {
   state = { expanded: false, comments: false };
@@ -17,6 +12,89 @@ class AnnotationViewCard extends Component {
   handleExpandClick = () => {
     this.setState({ expanded: !this.state.expanded, comments: false });
   };
+
+  tagNames = {
+    fact_check: "Fact Check",
+    truth: "True",
+    inspire: "Inspiring",
+    deceptive: "Deceptive"
+  };
+
+  getAnnotationTags = () => {
+    const annotation = this.props.availableAnnotations.find(
+      annotation => annotation.id === this.props.annotation.id.toString()
+    );
+    return annotation.tags;
+  };
+
+  countTags = () => {
+    const tags = {
+      fact_check: 0,
+      inspire: 0,
+      deceptive: 0,
+      truth: 0
+    };
+    this.getAnnotationTags().forEach(tag => {
+      tags[tag.tag_type]++;
+    });
+    return tags;
+  };
+
+  totalTags = tags => {
+    const values = Object.values(tags);
+    const reducer = (accumulator, currentValue) => accumulator + currentValue;
+    return values.reduce(reducer);
+  };
+
+  makePercentFixed = (num, total) => ((num / total) * 100).toFixed(1);
+
+  makeTagStats = (tags, total) => {
+    return [
+      {
+        tag_type: "truth",
+        color: colors.blue,
+        percent: this.makePercentFixed(tags.truth, total),
+        count: tags.truth
+      },
+      {
+        tag_type: "inspire",
+        color: colors.gold,
+        percent: this.makePercentFixed(tags.inspire, total),
+        count: tags.inspire
+      },
+      {
+        tag_type: "deceptive",
+        color: colors.green,
+        percent: this.makePercentFixed(tags.deceptive, total),
+        count: tags.deceptive
+      },
+      {
+        tag_type: "fact_check",
+        color: colors.red,
+        percent: this.makePercentFixed(tags.fact_check, total),
+        count: tags.fact_check
+      }
+    ];
+  };
+
+  statsGenerator = () => {
+    const tags = this.countTags();
+    const total = this.totalTags(tags);
+    return this.makeTagStats(tags, total);
+  };
+
+  generateSpectrumDiv = (color, percent) => (
+    <div
+      className="spectrum"
+      key={color}
+      style={{
+        backgroundColor: color,
+        width: `${percent - 1}%`,
+        height: 20,
+        margin: 1
+      }}
+    />
+  );
 
   renderMinCard = () => {
     return (
@@ -75,7 +153,28 @@ class AnnotationViewCard extends Component {
 
           <Card.Description>{this.props.annotation.content}</Card.Description>
         </Card.Content>
-        <Card.Content extra>Tags Go Here</Card.Content>
+
+        {this.props.availableAnnotations.length > 0 ? (
+          <Card.Content extra>
+            {this.statsGenerator().map(stat => (
+              <Popup
+                trigger={this.generateSpectrumDiv(
+                  stat.color,
+                  stat.percent,
+                  stat.count
+                )}
+                content={`${this.tagNames[stat.tag_type]} (${stat.count}) - ${
+                  stat.percent
+                }%`}
+                basic
+                inverted
+                position="bottom center"
+                key={stat.color}
+              />
+            ))}
+          </Card.Content>
+        ) : null}
+
         <Card.Content extra>
           {"Points: "} {this.props.annotation.points}
           <Button
@@ -141,7 +240,8 @@ const mapStateToProps = state => ({
   currentHighlight: state.highlights.currentHighlight,
   availableUsers: state.users.availableUsers,
   currentComments: state.comments.currentComments,
-  currentStatement: state.statements.currentStatement
+  currentStatement: state.statements.currentStatement,
+  availableAnnotations: state.annotations.availableAnnotations
 });
 
 const mapDispatchToProps = dispatch => ({
