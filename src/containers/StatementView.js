@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Grid, Segment, Sticky } from "semantic-ui-react";
+import { Container, Grid, Segment, Sticky, Header } from "semantic-ui-react";
 import { setCurrentStatement } from "../actions/statement";
 import { connect } from "react-redux";
 import { fetchUsers } from "../actions/user";
@@ -26,12 +26,15 @@ class StatementView extends Component {
         {this.props.currentStatement && !this.props.statementLoadingStatus ? (
           <Grid centered columns={3}>
             <Grid.Column width={8}>
+              <Header as="h3">
+                {this.props.currentStatement.attributes.title}
+              </Header>
               <Segment raised>
                 {this.props.currentHighlightPositions.length > 0
                   ? this.props.currentHighlightPositions.map(highlight => (
                       <StatementViewRail
                         key={highlight.id}
-                        yPos={highlight.position - 70}
+                        yPos={highlight.position - 130}
                         id={highlight.id}
                         index={this.props.currentHighlightPositions.indexOf(
                           highlight
@@ -43,8 +46,8 @@ class StatementView extends Component {
                 <Container
                   text
                   style={{
-                    fontSize: "1.3em",
                     width: "500px",
+                    fontSize: "1.3em",
                     textAlign: "justify",
                     lineHeight: "1.5em"
                   }}
