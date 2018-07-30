@@ -1,14 +1,23 @@
 import React, { Component } from "react";
-import { setHoverHighlight, addHighlightPosition } from "../actions/highlight";
+import {
+  setHoverHighlight,
+  addHighlightPosition,
+  removeHighlightPosition
+} from "../actions/highlight";
 import { connect } from "react-redux";
 
 let key = 0;
 
 class HighlightSpan extends Component {
   logHighlightPos = node => {
-    node
-      ? this.props.addHighlightPosition(node.getBoundingClientRect().y)
-      : null;
+    if (node === null) {
+      this.props.removeHighlightPosition(this.props.id);
+    } else {
+      this.props.addHighlightPosition(
+        node.getBoundingClientRect().y,
+        this.props.id
+      );
+    }
   };
 
   render() {
@@ -38,7 +47,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   setHoverHighlight: name => dispatch(setHoverHighlight(name)),
-  addHighlightPosition: pos => dispatch(addHighlightPosition(pos))
+  addHighlightPosition: (position, annotationId) =>
+    dispatch(addHighlightPosition(position, annotationId)),
+  removeHighlightPosition: annotationId =>
+    dispatch(removeHighlightPosition(annotationId))
 });
 
 export default connect(

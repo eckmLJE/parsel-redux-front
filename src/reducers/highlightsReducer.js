@@ -5,18 +5,20 @@ const highlights = (
   switch (action.type) {
     case "SET_HIGHLIGHT":
       return { ...state, currentHighlight: action.name };
-    case "CLEAR_HIGHLIGHT_POSITIONS":
-      return {
-        ...state,
-        currentHighlightPositions: []
-      };
     case "ADD_HIGHLIGHT_POSITION":
       return {
         ...state,
         currentHighlightPositions: [
           ...state.currentHighlightPositions,
-          action.position
+          { id: action.annotationId, position: action.position }
         ]
+      };
+    case "REMOVE_HIGHLIGHT_POSITION":
+      return {
+        ...state,
+        currentHighlightPositions: state.currentHighlightPositions.filter(
+          highlight => highlight.id !== action.annotationId
+        )
       };
     default:
       return state;

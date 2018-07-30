@@ -3,7 +3,15 @@ import { connect } from "react-redux";
 import { setHoverHighlight } from "../actions/highlight";
 import tags from "../interpreter/tags";
 import CommentCard from "./CommentCard";
-import { Comment, Button, Card, Image, Container, Popup } from "semantic-ui-react";
+import {
+  Comment,
+  Button,
+  Card,
+  Image,
+  Container,
+  Popup,
+  Divider
+} from "semantic-ui-react";
 import colors from "../interpreter/colors";
 
 class AnnotationViewCard extends Component {
@@ -89,7 +97,7 @@ class AnnotationViewCard extends Component {
       key={color}
       style={{
         backgroundColor: color,
-        width: `${percent - 1}%`,
+        width: `${percent - 2}%`,
         height: 20,
         margin: 1
       }}
@@ -222,7 +230,10 @@ class AnnotationViewCard extends Component {
     return (
       <Container>
         {this.state.expanded ? this.renderExpandCard() : this.renderMinCard()}
-        <Comment.Group size="small" style={{ marginBottom: 22 }}>
+        <Comment.Group
+          size="small"
+          style={{ marginBottom: 22, paddingLeft: 20 }}
+        >
           {this.state.expanded &&
           this.state.comments &&
           this.props.currentComments
@@ -230,6 +241,7 @@ class AnnotationViewCard extends Component {
                 <CommentCard key={comment.id} comment={comment} />
               ))
             : null}
+          <Divider />
         </Comment.Group>
       </Container>
     );

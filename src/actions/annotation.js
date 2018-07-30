@@ -18,6 +18,5 @@ export const fetchAnnotations = () => {
       .then(json =>
         dispatch({ type: "ADD_ANNOTATIONS", annotations: json.data })
       )
-      .then(console.log);
   };
 };

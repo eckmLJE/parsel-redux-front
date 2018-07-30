@@ -34,6 +34,7 @@ class StatementViewCard extends Component {
       if (annotation.start > lastEnd) {
         highlights.push(
           this.createHighlight(
+            annotation.id,
             annotation.name,
             annotation.start,
             annotation.end
@@ -47,6 +48,7 @@ class StatementViewCard extends Component {
         highlights.push(lastHighlight);
         highlights.push(
           this.createHighlight(
+            lastHighlight.id,
             `${lastHighlight.name} ${annotation.name}`,
             annotation.start,
             prevEnd
@@ -54,7 +56,7 @@ class StatementViewCard extends Component {
         );
 
         highlights.push(
-          this.createHighlight(annotation.name, prevEnd, annotation.end)
+          this.createHighlight(annotation.id, annotation.name, prevEnd, annotation.end)
         );
         lastEnd = annotation.end;
       }
@@ -62,10 +64,11 @@ class StatementViewCard extends Component {
     return highlights;
   };
 
-  createHighlight = (id, start, end) => ({
-    name: id,
-    start: start,
-    end: end
+  createHighlight = (id, name, start, end) => ({
+    id,
+    name,
+    start,
+    end
   });
 
   makeStatementArray = () => {
@@ -85,6 +88,7 @@ class StatementViewCard extends Component {
           content={statement.slice(highlight.start, highlight.end)}
           name={highlight.name}
           key={highlight.name}
+          id={highlight.id}
         />
       );
       charCounter = highlight.end;

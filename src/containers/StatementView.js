@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import { Container, Grid, Segment, Label, Rail } from "semantic-ui-react";
+import { Container, Grid, Segment, Rail, Label } from "semantic-ui-react";
 import { setCurrentStatement } from "../actions/statement";
 import { connect } from "react-redux";
 import { fetchUsers } from "../actions/user";
+import { clearHighlightPositions } from "../actions/highlight";
 
 import StatementViewContent from "../components/StatementViewContent";
 import AnnotationsViewList from "../components/AnnotationsViewList";
+import StatementViewRail from "../components/StatementViewRail";
 
 class StatementView extends Component {
   componentDidMount = () => {
@@ -15,12 +17,12 @@ class StatementView extends Component {
 
   render() {
     return (
-      <Container style={{ maxWidth: 700, margin: "auto" }}>
-        {this.props.currentStatement && this.props.currentComments ? (
+      <Container style={{ margin: "auto", marginTop: 30 }}>
+        {this.props.currentStatement ? (
           <Grid centered columns={3}>
             <Grid.Column width={8}>
               <Segment raised>
-                <Rail position="right" style={{ padding: 0, margin: 0 }}>
+                {/* <Rail position="right" style={{ padding: 0, margin: 0 }}>
                   <Label
                     color="teal"
                     size="small"
@@ -28,12 +30,22 @@ class StatementView extends Component {
                     image
                   >
                     <img alt="" src={require(`../assets/avatars/man-1.svg`)} />
-                    <Label.Detail>John</Label.Detail>
+                    <Label.Detail>Fezzik</Label.Detail>
                   </Label>
-                </Rail>
+                </Rail> */}
+                {this.props.currentHighlightPositions.length > 0
+                  ? this.props.currentHighlightPositions.map(highlight => (
+                      <StatementViewRail
+                        key={highlight.id}
+                        yPos={highlight.position - 70}
+                        id={highlight.id}
+                      />
+                    ))
+                  : null}
                 <Container
                   text
                   style={{
+                    fontSize: "1.3em",
                     width: "90%",
                     textAlign: "justify"
                   }}
@@ -54,14 +66,14 @@ class StatementView extends Component {
 }
 
 const mapStateToProps = state => ({
-  availableStatements: state.statements.availableStatements,
   currentStatement: state.statements.currentStatement,
-  currentComments: state.comments.currentComments
+  currentHighlightPositions: state.highlights.currentHighlightPositions
 });
 
 const mapDispatchToProps = dispatch => ({
   setStatement: statementObj => dispatch(setCurrentStatement(statementObj)),
-  fetchUsers: () => dispatch(fetchUsers())
+  fetchUsers: () => dispatch(fetchUsers()),
+  clearHighlightPositions: () => dispatch(clearHighlightPositions())
 });
 
 export default connect(
