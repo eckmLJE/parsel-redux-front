@@ -19,9 +19,14 @@ class AnnotationRail extends Component {
   render() {
     return (
       <div className="statement-rail">
-        {this.getCurrentAnnotations().map(annotation => (
-          <AnnotationRailCard key={annotation.id} annotation={annotation} />
-        ))}
+        {this.props.currentHighlightPositions.length &&
+        this.props.availableUsers ? (
+          <div>
+            {this.getCurrentAnnotations().map(annotation => (
+              <AnnotationRailCard key={annotation.id} annotation={annotation} />
+            ))}
+          </div>
+        ) : null}
       </div>
     );
   }
@@ -31,6 +36,7 @@ const mapStateToProps = state => ({
   availableAnnotations: state.annotations.availableAnnotations,
   currentStatement: state.statements.currentStatement,
   statementLoadingStatus: state.statements.statementLoadingStatus,
+  currentHighlightPositions: state.highlights.currentHighlightPositions,
   availableUsers: state.users.availableUsers
 });
 
