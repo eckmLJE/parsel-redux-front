@@ -6,7 +6,7 @@ import { Container, Item } from "semantic-ui-react";
 class PoliticianHomeList extends Component {
   render() {
     return (
-      <Container style={{ height: "80vh", overflowY: "scroll" }}>
+      <Container>
         <Item.Group divided>
           {this.props.politicianLoadingStatus ? (
             <div>Loading Politicians...</div>

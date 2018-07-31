@@ -1,5 +1,5 @@
 const highlights = (
-  state = { currentHighlight: "none", currentHighlightPositions: [] },
+  state = { currentHighlight: "none", currentHighlightPositions: [], currentBoundingRectY: 0 },
   action
 ) => {
   switch (action.type) {
@@ -20,6 +20,10 @@ const highlights = (
           highlight => highlight.id !== action.annotationId
         )
       };
+    case "SET_BOUNDING_RECT_Y":
+      return {
+        ...state, currentBoundingRectY: action.y
+      }
     default:
       return state;
   }

@@ -1,8 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import HighlightSpan from "./HighlightSpan";
 import TextFragment from "./TextFragment";
-import { Fragment } from "react";
 
 class StatementViewCard extends Component {
   convertId = id => {
@@ -110,7 +109,14 @@ class StatementViewCard extends Component {
   };
 
   render() {
-    return <Fragment>{this.makeStatementArray()}</Fragment>;
+    return (
+      <Fragment>
+      <div className="statement-header">{this.props.currentStatement.attributes.title}</div>
+      <div className="statement">
+        {this.makeStatementArray()}
+      </div>
+      </Fragment>
+    );
   }
 }
 

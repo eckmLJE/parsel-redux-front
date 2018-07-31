@@ -8,6 +8,11 @@ export const addHighlightPosition = (position, annotationId) => ({
   annotationId
 });
 
+export const setBoundingRectY = y => ({
+  type: "SET_BOUNDING_RECT_Y",
+  y
+});
+
 export const removeHighlightPosition = annotationId => ({
   type: "REMOVE_HIGHLIGHT_POSITION",
   annotationId

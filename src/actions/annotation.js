@@ -10,6 +10,11 @@ export const setCurrentAnnotations = statementId => ({
   statementId
 });
 
+export const setCurrentAnnotationExpand = annotationId => ({
+  type: "SET_CURRENT_ANNOTATION_EXPAND",
+  annotationId
+});
+
 export const fetchAnnotations = () => {
   return dispatch => {
     dispatch({ type: "START_FETCHING_ANNOTATIONS_REQUEST" });
@@ -17,6 +22,6 @@ export const fetchAnnotations = () => {
       .then(res => res.json())
       .then(json =>
         dispatch({ type: "ADD_ANNOTATIONS", annotations: json.data })
-      )
+      );
   };
 };

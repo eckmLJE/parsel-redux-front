@@ -19,7 +19,7 @@ class StatementsHomeList extends Component {
 
   render() {
     return (
-      <Container style={{ height: "80vh", overflowY: "scroll" }}>
+      <Container>
         <Item.Group divided>
           {this.props.statementLoadingStatus ? (
             <div>Loading Statements...</div>

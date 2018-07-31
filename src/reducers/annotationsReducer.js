@@ -1,5 +1,9 @@
 const Annotations = (
-  state = { availableAnnotations: [], annotationLoadingStatus: false },
+  state = {
+    availableAnnotations: [],
+    annotationLoadingStatus: false,
+    currentAnnotationExpand: null
+  },
   action
 ) => {
   switch (action.type) {
@@ -12,6 +16,11 @@ const Annotations = (
           convertAnnotation(annotation)
         ),
         annotationLoadingStatus: false
+      };
+    case "SET_CURRENT_ANNOTATION_EXPAND":
+      return {
+        ...state,
+        currentAnnotationExpand: action.annotationId
       };
     default:
       return state;

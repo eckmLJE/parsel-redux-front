@@ -1,72 +1,36 @@
 import React, { Component } from "react";
-import { Container, Grid, Segment, Sticky, Header } from "semantic-ui-react";
 import { setCurrentStatement } from "../actions/statement";
 import { connect } from "react-redux";
+
 import { fetchUsers } from "../actions/user";
-import { clearHighlightPositions } from "../actions/highlight";
+import {
+  clearHighlightPositions,
+  setBoundingRectY
+} from "../actions/highlight";
 
 import StatementViewContent from "../components/StatementViewContent";
-import AnnotationsViewList from "../components/AnnotationsViewList";
-import StatementViewRail from "../components/StatementViewRail";
+import AnnotationRail from "../components/AnnotationRail";
 
 class StatementView extends Component {
   state = {};
-
-  handleContextRef = contextRef => this.setState({ contextRef });
 
   componentDidMount = () => {
     this.props.setStatement(this.props.match.params.id);
     this.props.fetchUsers();
   };
 
+  handleRef = node => {
+    node ? this.props.setBoundingRectY(node.getBoundingClientRect().y) : 0;
+  };
+
   render() {
-    const { contextRef } = this.state;
     return (
-      <Container style={{ margin: "auto", marginTop: 30 }}>
-        {this.props.currentStatement && !this.props.statementLoadingStatus ? (
-          <Grid centered columns={3}>
-            <Grid.Column width={8}>
-              <Header as="h3">
-                {this.props.currentStatement.attributes.title}
-              </Header>
-              <Segment raised>
-                {this.props.currentHighlightPositions.length > 0
-                  ? this.props.currentHighlightPositions.map(highlight => (
-                      <StatementViewRail
-                        key={highlight.id}
-                        yPos={highlight.position - 130}
-                        id={highlight.id}
-                        index={this.props.currentHighlightPositions.indexOf(
-                          highlight
-                        )}
-                        statementId={this.props.match.params.id}
-                      />
-                    ))
-                  : null}
-                <Container
-                  text
-                  style={{
-                    width: "500px",
-                    fontSize: "1.3em",
-                    textAlign: "justify",
-                    lineHeight: "1.5em"
-                  }}
-                >
-                  <StatementViewContent />
-                </Container>
-              </Segment>
-            </Grid.Column>
-            <Grid.Column width={2} />
-            <Grid.Column width={6}>
-              <div ref={contextRef}>
-                <Sticky context={contextRef}>
-                  <AnnotationsViewList />
-                </Sticky>
-              </div>
-            </Grid.Column>
-          </Grid>
+      <div className="statement-view" ref={this.handleRef}>
+        {this.props.currentStatement ? <StatementViewContent /> : null}
+        {this.props.currentHighlightPositions.length ? (
+          <AnnotationRail />
         ) : null}
-      </Container>
+      </div>
     );
   }
 }
@@ -81,7 +45,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   setStatement: statementObj => dispatch(setCurrentStatement(statementObj)),
   fetchUsers: () => dispatch(fetchUsers()),
-  clearHighlightPositions: () => dispatch(clearHighlightPositions())
+  clearHighlightPositions: () => dispatch(clearHighlightPositions()),
+  setBoundingRectY: y => dispatch(setBoundingRectY(y))
 });
 
 export default connect(

@@ -3,7 +3,6 @@ import { Route } from "react-router-dom";
 import "./App.css";
 
 import HeaderBar from "./components/HeaderBar";
-// import BottomBar from "./components/BottomBar";
 
 import Home from "./containers/Home";
 import StatementView from "./containers/StatementView";
@@ -14,15 +13,15 @@ import TestingView from "./containers/TestingView";
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="app">
+        <div className="app-column">
         <HeaderBar />
         <Route exact path="/" component={Home} />
-        {/* <Route exact path="/statement" component={StatementView} /> */}
         <Route path="/statement/:id" component={StatementView} />
         <Route exact path="/user" component={UserPage} />
         <Route exact path="/search" component={Search} />
         <Route exact path="/testing" component={TestingView} />
-        {/* <BottomBar /> */}
+        </div>
       </div>
     );
   }

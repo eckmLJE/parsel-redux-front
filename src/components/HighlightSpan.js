@@ -7,8 +7,6 @@ import {
 import { connect } from "react-redux";
 import semColors from "../interpreter/semColors";
 
-let key = 0;
-
 class HighlightSpan extends Component {
   logHighlightPos = node => {
     if (node === null) {
@@ -29,9 +27,7 @@ class HighlightSpan extends Component {
           borderBottom: `solid 5px ${semColors[this.props.index]}`
         }}
         name={this.props.name}
-        key={++key}
-        // onMouseEnter={() => this.setState({ color: "blue" })}
-        // onMouseLeave={() => this.setState({ color: "red" })}
+        key={this.props.id}
       >
         {this.props.content}
       </span>
